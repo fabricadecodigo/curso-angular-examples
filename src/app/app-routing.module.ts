@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './clientes/components/clientes/clientes.component';
 import { EditClientesComponent } from './clientes/pages/edit-clientes/edit-clientes.component';
 import { ListaClientesComponent } from './clientes/pages/lista-clientes/lista-clientes.component';
+import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   // Ordem das rotas
@@ -41,7 +42,8 @@ const routes: Routes = [
       { path: 'edit/:id', component: EditClientesComponent },
       { path: '', component: ListaClientesComponent },
     ],
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
