@@ -5,13 +5,19 @@ import { EditClientesComponent } from './clientes/pages/edit-clientes/edit-clien
 import { ListaClientesComponent } from './clientes/pages/lista-clientes/lista-clientes.component';
 
 const routes: Routes = [
+  // Ordem das rotas
+  // 1 rotas com path estatico
+  // 2 rotas com parametros
+  // 3 rotas vazias
+  // 4 rotas coringa
+
   // Exemplo 1
   {
     path: '',
     children: [
-      { path: '', component: ListaClientesComponent },
       { path: 'new', component: EditClientesComponent },
       { path: 'edit/:id', component: EditClientesComponent },
+      { path: '', component: ListaClientesComponent },
     ],
   },
 
