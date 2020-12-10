@@ -25,9 +25,9 @@ const routes: Routes = [
   {
     path: 'clientes',
     children: [
-      { path: '', component: ListaClientesComponent },
       { path: 'new', component: EditClientesComponent },
       { path: 'edit/:id', component: EditClientesComponent },
+      { path: '', component: ListaClientesComponent },
     ],
   },
 
@@ -37,9 +37,9 @@ const routes: Routes = [
     path: 'clientes-layout',
     component: ClientesComponent,
     children: [
-      { path: '', component: ListaClientesComponent },
       { path: 'new', component: EditClientesComponent },
       { path: 'edit/:id', component: EditClientesComponent },
+      { path: '', component: ListaClientesComponent },
     ],
   }
 ];
