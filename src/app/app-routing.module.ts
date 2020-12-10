@@ -16,9 +16,11 @@ const routes: Routes = [
   {
     path: '',
     children: [
+      { path: 'dashboard', component: ListaClientesComponent },
       { path: 'new', component: EditClientesComponent },
       { path: 'edit/:id', component: EditClientesComponent },
-      { path: '', component: ListaClientesComponent },
+      // Exemplo de redirecionamento
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ],
   },
 
