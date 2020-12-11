@@ -1,1 +1,21 @@
 <p>lista-clientes works!</p>
+
+<!-- Exemplo caminho completo -->
+<p>Exemplo camilho completo</p>
+<a routerLink="/new">Novo cliente (1)</a><br />
+<a routerLink="/clientes/new">Novo cliente (2)</a><br />
+
+<!-- Exemplo rota filha -->
+<p>Exemplo rota filha</p>
+<a routerLink="/clientes">Clientes</a><br />
+<a routerLink="new">Novo cliente (3)</a><br />
+
+<p>Exemplo passando parametro</p>
+
+<a routerLink="/edit/1">Editar cliente (1)</a><br />
+<a [routerLink]="['/clientes/edit', clienteId]">Editar cliente (2)</a><br />
+
+<p>Exemplo com Angular Router</p>
+
+<button (click)="novoCliente()">Novo cliente</button><br />
+<button (click)="editarCliente(5)">Editar cliente</button><br />

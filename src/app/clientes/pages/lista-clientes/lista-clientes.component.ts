@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-clientes',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-clientes.component.scss']
 })
 export class ListaClientesComponent implements OnInit {
+  clienteId: number = 1;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  novoCliente() {
+    this.router.navigate(['/new']);
+  }
+
+  editarCliente(id: number) {
+    this.router.navigate(['/clientes', 'edit', id]);
+  }
 }
