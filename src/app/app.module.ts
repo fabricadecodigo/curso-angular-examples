@@ -1,11 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListaClientesComponent } from './clientes/pages/lista-clientes/lista-clientes.component';
 import { EditClientesComponent } from './clientes/pages/edit-clientes/edit-clientes.component';
-import { ClientesComponent } from './clientes/components/clientes/clientes.component';
+import { ListaClientesComponent } from './clientes/pages/lista-clientes/lista-clientes.component';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -13,7 +11,6 @@ import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-fo
     AppComponent,
     ListaClientesComponent,
     EditClientesComponent,
-    ClientesComponent,
     PageNotFoundComponent
   ],
   imports: [
