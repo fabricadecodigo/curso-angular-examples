@@ -16,12 +16,8 @@
       <td>{{ cliente.id }}</td>
       <td>{{ cliente.name }}</td>
       <td>
-        <a [routerLink]="['/edit', cliente.id, cliente.name]">Editar</a>
+        <a [routerLink]="['edit', cliente.id]">Editar</a>
       </td>
     </tr>
   </tbody>
 </table>
-
-<p>Exemplo com query string</p>
-
-<a href="/new?name=Felipe&id=10">Query string</a>
