@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ClientesRoutingModule } from './clientes-routing.module';
@@ -11,7 +12,8 @@ import { ListaClientesComponent } from './pages/lista-clientes/lista-clientes.co
   ],
   imports: [
     CommonModule,
-    ClientesRoutingModule
+    ClientesRoutingModule,
+    FormsModule
   ]
 })
 export class ClientesModule { }

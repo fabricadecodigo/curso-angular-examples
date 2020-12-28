@@ -1,3 +1,4 @@
+import { ICustomer } from './../../models/icustomer';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,15 +9,37 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditClientesComponent implements OnInit {
   id: number;
-  name: string;
+  customer: ICustomer;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.customer = {
+      active: true,
+      address: {},
+      phones: [],
+    };
+
     const id = this.activatedRoute.snapshot.paramMap.get('id');
 
     if (id) {
       this.id = Number(id);
     }
+  }
+
+  getPhoneIdAndName(index: number): string {
+    return `phone[${index}]`;
+  }
+
+  btnAddPhoneClick(): void {
+    this.customer.phones.push({ });
+  }
+
+  btnRemovePhoneClick(index: number): void {
+    this.customer.phones.splice(index, 1);
+  }
+
+  onSubmit(): void {
+    console.log(this.customer);
   }
 }
