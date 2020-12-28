@@ -6,21 +6,28 @@
 
     <div class="form-item">
       <label for="name">Nome</label>
-      <input type="text" name="name" id="name" [(ngModel)]="customer.name" />
-      <!-- <div class="validation-errors">
-        <p>Campo obrigatório</p>
-        <p>Email invalido</p>
-      </div> -->
+      <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="customer.name" required minlength="2" />
+      <div class="validation-errors" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <p *ngIf="name.errors.required">Campo obrigatório</p>
+        <p *ngIf="name.errors.minlength">Informe no mínimo 2 caracteres</p>
+      </div>
     </div>
 
     <div class="form-item">
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" [(ngModel)]="customer.email" />
+      <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="customer.email" required email />
+      <div class="validation-errors" *ngIf="email.invalid && (email.dirty || email.touched)">
+        <p *ngIf="email.errors.required">Campo obrigatório</p>
+        <p *ngIf="email.errors.email">Email inválido</p>
+      </div>
     </div>
 
     <div class="form-item">
       <label for="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" [(ngModel)]="customer.cpf" />
+      <input type="text" name="cpf" id="cpf" #cpf="ngModel" [(ngModel)]="customer.cpf" required />
+      <div class="validation-errors" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
+        <p *ngIf="cpf.errors.required">Campo obrigatório</p>
+      </div>
     </div>
 
     <div class="form-item">
@@ -33,18 +40,19 @@
 
       <div class="items">
         <div class="form-item-radio">
-          <input type="radio" name="genre" id="men" value="homem" [(ngModel)]="customer.genre" />
+          <input type="radio" name="genre" id="men" #genre="ngModel" value="homem" [(ngModel)]="customer.genre" required />
           <label for="men">Masculino</label>
         </div>
 
         <div class="form-item-radio">
-          <input type="radio" name="genre" id="woman" value="mulher" [(ngModel)]="customer.genre" />
+          <input type="radio" name="genre" id="woman" #genre="ngModel" value="mulher" [(ngModel)]="customer.genre" required />
           <label for="woman">Feminino</label>
         </div>
       </div>
+      <div class="validation-errors" *ngIf="genre.invalid">
+        <p *ngIf="genre.errors.required">Campo obrigatório</p>
+      </div>
     </div>
-
-
 
     <div class="form-item-checkbox">
       <input type="checkbox" name="active" id="active" [(ngModel)]="customer.active" />
@@ -57,16 +65,22 @@
 
     <div class="form-item">
       <label for="addressType">Tipo de enderço</label>
-      <select name="addressType" id="addressType" [(ngModel)]="customer.address.type">
+      <select name="addressType" id="addressType" #addressType="ngModel" [(ngModel)]="customer.address.type" required>
         <option value=""></option>
         <option value="R">Residencial</option>
         <option value="C">Comercial</option>
       </select>
+      <div class="validation-errors" *ngIf="addressType.invalid && (addressType.dirty || addressType.touched)">
+        <p *ngIf="addressType.errors.required">Campo obrigatório</p>
+      </div>
     </div>
 
     <div class="form-item">
       <label for="cep">CEP</label>
-      <input type="text" name="cep" id="cep" [(ngModel)]="customer.address.cep" />
+      <input type="text" name="cep" id="cep" #cep="ngModel" [(ngModel)]="customer.address.cep" required />
+      <div class="validation-errors" *ngIf="cep.invalid && (cep.dirty || cep.touched)">
+        <p *ngIf="cep.errors.required">Campo obrigatório</p>
+      </div>
     </div>
 
     <div class="form-item">
@@ -97,14 +111,23 @@
     <div class="form-action-item" *ngFor="let phone of customer.phones; index as i;">
       <div class="form-item">
         <label [for]="getPhoneIdAndName(i)">Telefone</label>
-        <input type="tel" [name]="getPhoneIdAndName(i)" [id]="getPhoneIdAndName(i)" [(ngModel)]="phone.number" />
+        <input type="tel"
+          [name]="getPhoneIdAndName(i)"
+          [id]="getPhoneIdAndName(i)"
+          #phoneControl="ngModel" [(ngModel)]="phone.number" required />
+        <div class="validation-errors" *ngIf="phoneControl.invalid && (phoneControl.dirty || phoneControl.touched)">
+          <p *ngIf="phoneControl.errors.required">Campo obrigatório</p>
+        </div>
       </div>
-      <button type="button" class="btn-outline-secondary" (click)="btnRemovePhoneClick(i)">Remover</button>
+      <div class="form-button">
+        <button type="button" class="btn-outline-secondary" (click)="btnRemovePhoneClick(i)">Remover</button>
+      </div>
     </div>
+
 
     <button type="button" class="btn-outline-secondary" (click)="btnAddPhoneClick()">Adicionar</button>
   </fieldset>
 
-  <button type="submit" class="btn-primary">Salvar</button>
+  <button type="submit" class="btn-primary" [disabled]="form.form.invalid">Salvar</button>
 
 </form>
