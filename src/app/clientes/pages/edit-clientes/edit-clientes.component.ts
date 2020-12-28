@@ -14,11 +14,7 @@ export class EditClientesComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.customer = {
-      active: true,
-      address: {},
-      phones: [],
-    };
+    this.initForm();
 
     const id = this.activatedRoute.snapshot.paramMap.get('id');
 
@@ -39,7 +35,16 @@ export class EditClientesComponent implements OnInit {
     this.customer.phones.splice(index, 1);
   }
 
+  initForm(): void {
+    this.customer = {
+      active: true,
+      address: {},
+      phones: [],
+    };
+  }
+
   onSubmit(): void {
     console.log(this.customer);
+    this.initForm();
   }
 }
