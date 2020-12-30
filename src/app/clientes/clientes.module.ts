@@ -1,3 +1,4 @@
+import { ValidationModule } from './../shared/validations/validation.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,8 @@ import { ListaClientesComponent } from './pages/lista-clientes/lista-clientes.co
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    FormsModule
+    FormsModule,
+    ValidationModule
   ]
 })
 export class ClientesModule { }

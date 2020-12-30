@@ -6,10 +6,12 @@
 
     <div class="form-item">
       <label for="name">Nome</label>
-      <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="customer.name" required minlength="2" />
+      <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="customer.name"
+        required minlength="2" appInvalidName="Teste" />
       <div class="validation-errors" *ngIf="name.invalid && (name.dirty || name.touched)">
         <p *ngIf="name.errors.required">Campo obrigatório</p>
-        <p *ngIf="name.errors.minlength">Informe no mínimo 2 caracteres</p>
+        <p *ngIf="name.errors.minlength">Informe no mínimo {{ name.errors.minlength.requiredLength }} caracteres</p>
+        <p *ngIf="name.errors.invalidName">Nome inválido: {{ name.errors.invalidName.value }}</p>
       </div>
     </div>
 
@@ -24,9 +26,12 @@
 
     <div class="form-item">
       <label for="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" #cpf="ngModel" [(ngModel)]="customer.cpf" required />
+      <input type="text" name="cpf" id="cpf" #cpf="ngModel" [(ngModel)]="customer.cpf"
+        required minlength="11" maxlength="11" appCpfValidation />
       <div class="validation-errors" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">
         <p *ngIf="cpf.errors.required">Campo obrigatório</p>
+        <p *ngIf="cpf.errors.minlength">Informe no mínimo 11 caracteres</p>
+        <p *ngIf="cpf.errors.cpfInvalid">CPF inválido</p>
       </div>
     </div>
 
