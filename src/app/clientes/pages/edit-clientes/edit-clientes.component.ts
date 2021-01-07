@@ -83,5 +83,10 @@ export class EditClientesComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.customer.value);
+    // limpa os campos
+    this.customer.reset();
+
+    // remove os telefones adicionados na tela
+    this.phones.clear();
   }
 }
