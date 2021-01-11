@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { cpfValidator, invalidNameValidator } from '../../../shared/validations';
 
 @Component({
   selector: 'app-edit-clientes',
@@ -8,9 +9,17 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class EditClientesComponent implements OnInit {
   customer = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      invalidNameValidator('Teste')
+    ]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    cpf: new FormControl('', [Validators.required]),
+    cpf: new FormControl('', [
+      Validators.required,
+      Validators.minLength(11),
+      cpfValidator()
+    ]),
     birthDate: new FormControl(''),
     genre: new FormControl('', [Validators.required]),
     active: new FormControl(true),
@@ -27,7 +36,7 @@ export class EditClientesComponent implements OnInit {
 
   // Exemplo com formBuilder
   // customer = this.formBulder.group({
-  //   name: ['', [Validators.required, Validators.minLength(2)]],
+  //   name: ['', [Validators.required, Validators.minLength(2), invalidNameValidator('Teste')]],
   //   email: [''],
   //   cpf: [''],
   //   birthDate: [''],

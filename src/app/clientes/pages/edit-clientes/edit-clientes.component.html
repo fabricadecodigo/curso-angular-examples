@@ -10,6 +10,7 @@
       <div class="validation-errors" *ngIf="name.invalid && (name.dirty || name.touched)">
         <p *ngIf="name.errors.required">Campo obrigatório</p>
         <p *ngIf="name.errors.minlength">Informe no mínimo {{name.errors.minlength.requiredLength}} caracteres</p>
+        <p *ngIf="name.errors.invalidName">Nome inválido: {{ name.errors.invalidName.value }}</p>
       </div>
 
       <!-- {{ name.errors | json }} -->
@@ -26,9 +27,11 @@
 
     <div class="form-item">
       <label for="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" formControlName="cpf" />
+      <input type="text" name="cpf" id="cpf" formControlName="cpf" maxlength="11" />
       <div class="validation-errors" *ngIf="getControl('cpf').invalid && (getControl('cpf').dirty || getControl('cpf').touched)">
         <p *ngIf="getControl('cpf').errors.required">Campo obrigatório</p>
+        <p *ngIf="getControl('cpf').errors.minlength">Informe no mínimo 11 caracteres</p>
+        <p *ngIf="getControl('cpf').errors.cpfInvalid">CPF inválido</p>
       </div>
     </div>
 
