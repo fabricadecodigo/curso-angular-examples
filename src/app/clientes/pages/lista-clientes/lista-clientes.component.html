@@ -1,23 +1,34 @@
-<h2>Clientes</h2>
+<div class="page">
+  <h2>Clientes</h2>
+  <a routerLink="new" style="display: block; margin: 10px 0">Novo cliente</a>
 
-<a routerLink="new">Novo cliente</a>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="!clientes || clientes.length === 0">
+        <td colspan="3">Nenhum registro encontrado</td>
+      </tr>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.name }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>
+          <button class="btn-outline-primary" [routerLink]="['edit', cliente.id]">Editar</button>
+          <button class="btn-outline-secondary">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-
-<table style="margin-top: 10px;">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nome</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cliente of clientes">
-      <td>{{ cliente.id }}</td>
-      <td>{{ cliente.name }}</td>
-      <td>
-        <a [routerLink]="['edit', cliente.id]">Editar</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <div style="margin: 10px 0">
+    <button class="btn-primary" style="margin-right: 10px">Anterior</button>
+    <button class="btn-primary">Próxima</button>
+  </div>
+</div>

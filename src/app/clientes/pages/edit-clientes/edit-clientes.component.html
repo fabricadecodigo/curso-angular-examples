@@ -7,131 +7,15 @@
     <div class="form-item">
       <label for="name">Nome</label>
       <input type="text" name="name" id="name" formControlName="name" />
-      <div class="validation-errors" *ngIf="name.invalid && (name.dirty || name.touched)">
-        <p *ngIf="name.errors.required">Campo obrigatório</p>
-        <p *ngIf="name.errors.minlength">Informe no mínimo {{name.errors.minlength.requiredLength}} caracteres</p>
-        <p *ngIf="name.errors.invalidName">Nome inválido: {{ name.errors.invalidName.value }}</p>
-      </div>
-
-      <!-- {{ name.errors | json }} -->
     </div>
 
     <div class="form-item">
       <label for="email">Email</label>
       <input type="email" name="email" id="email" formControlName="email" />
-      <div class="validation-errors" *ngIf="email.invalid && (email.dirty || email.touched)">
-        <p *ngIf="email.errors.required">Campo obrigatório</p>
-        <p *ngIf="email.errors.email">Email inválido</p>
-      </div>
-    </div>
-
-    <div class="form-item">
-      <label for="cpf">CPF</label>
-      <input type="text" name="cpf" id="cpf" formControlName="cpf" maxlength="11" />
-      <div class="validation-errors" *ngIf="getControl('cpf').invalid && (getControl('cpf').dirty || getControl('cpf').touched)">
-        <p *ngIf="getControl('cpf').errors.required">Campo obrigatório</p>
-        <p *ngIf="getControl('cpf').errors.minlength">Informe no mínimo 11 caracteres</p>
-        <p *ngIf="getControl('cpf').errors.cpfInvalid">CPF inválido</p>
-      </div>
-    </div>
-
-    <div class="form-item">
-      <label for="birthDate">Data de nascimento</label>
-      <input type="date" name="birthDate" id="birthDate" formControlName="birthDate" />
-    </div>
-
-    <div class="form-item-group">
-      <p class="title">Gênero</p>
-
-      <div class="items">
-        <div class="form-item-radio">
-          <input type="radio" name="genre" id="men" value="homem" formControlName="genre" />
-          <label for="men">Masculino</label>
-        </div>
-
-        <div class="form-item-radio">
-          <input type="radio" name="genre" id="woman" value="mulher" formControlName="genre" />
-          <label for="woman">Feminino</label>
-        </div>
-      </div>
-      <div class="validation-errors" *ngIf="getControl('genre').invalid">
-        <p *ngIf="getControl('genre').errors.required">Campo obrigatório</p>
-      </div>
-    </div>
-
-    <div class="form-item-checkbox">
-      <input type="checkbox" name="active" id="active" formControlName="active" />
-      <label for="active">Ativo</label>
     </div>
   </fieldset>
 
-  <fieldset formGroupName="address">
-    <legend>Endereço</legend>
-
-    <div class="form-item">
-      <label for="addressType">Tipo de enderço</label>
-      <select name="addressType" id="addressType" formControlName="type">
-        <option value=""></option>
-        <option value="R">Residencial</option>
-        <option value="C">Comercial</option>
-      </select>
-      <div class="validation-errors" *ngIf="addressType.invalid && (addressType.dirty || addressType.touched)">
-        <p *ngIf="addressType.errors.required">Campo obrigatório</p>
-      </div>
-    </div>
-
-    <div class="form-item">
-      <label for="cep">CEP</label>
-      <input type="text" name="cep" id="cep" formControlName="cep" />
-      <div class="validation-errors" *ngIf="getControlFromAddressGroup('cep').invalid &&
-        (getControlFromAddressGroup('cep').dirty || getControlFromAddressGroup('cep').touched)">
-
-        <p *ngIf="getControlFromAddressGroup('cep').errors.required">Campo obrigatório</p>
-      </div>
-    </div>
-
-    <div class="form-item">
-      <label for="street">Logradouro</label>
-      <input type="text" name="street" id="street" formControlName="street" />
-    </div>
-
-    <div class="form-item">
-      <label for="number">Número</label>
-      <input type="text" name="number" id="number" formControlName="number" />
-    </div>
-
-    <div class="form-item">
-      <label for="complement">Complemento</label>
-      <input type="text" name="complement" id="complement" formControlName="complement" />
-    </div>
-
-    <div class="form-item">
-      <label for="neighborhood">Bairro</label>
-      <input type="text" name="neighborhood" id="neighborhood" formControlName="neighborhood" />
-    </div>
-  </fieldset>
-
-  <fieldset formArrayName="phones">
-    <legend>Telefones</legend>
-
-    <div class="form-action-item" *ngFor="let phoneControl of phones.controls; index as i" [formGroupName]="i">
-
-      <div class="form-item">
-        <label [for]="getPhoneIdAndName(i)">Telefone</label>
-        <input type="tel" [name]="getPhoneIdAndName(i)" [id]="getPhoneIdAndName(i)" formControlName="phone" />
-
-        <div class="validation-errors" *ngIf="getPhone(i).invalid && (getPhone(i).dirty || getPhone(i).touched)">
-          <p *ngIf="getPhone(i).errors.required">Campo obrigatório</p>
-        </div>
-      </div>
-
-      <div class="form-button">
-        <button type="button" class="btn-outline-secondary" (click)="btnRemovePhoneClick(i)">Remover</button>
-      </div>
-    </div>
-
-    <button type="button" class="btn-outline-secondary" (click)="btnAddPhoneClick()">Adicionar</button>
-  </fieldset>
-
-  <button type="submit" class="btn-primary" [disabled]="customer.invalid">Salvar</button>
+  <button type="submit" class="btn-primary" [disabled]="customer.invalid">
+    Salvar
+  </button>
 </form>
