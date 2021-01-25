@@ -35,6 +35,12 @@ export class ListaClientesComponent implements OnInit {
   //   this.getAllCustomers(this.page);
   // }
 
+  // deleteCliente(customer: ICustomer): void {
+  //   this.clienteRepositoryService.delete(customer.id)
+  //     .subscribe(() => {
+  //       this.clientes.splice(this.clientes.indexOf(customer), 1);
+  //     });
+  // }
 
   // Exemplo 2
   async ngOnInit(): Promise<void> {
@@ -58,5 +64,14 @@ export class ListaClientesComponent implements OnInit {
   async proximaPagina(): Promise<void> {
     this.page++;
     await this.getAllCustomers(this.page);
+  }
+
+  async deleteCliente(customer: ICustomer): Promise<void> {
+    try {
+      await this.clienteRepositoryService.delete(customer.id);
+      this.clientes.splice(this.clientes.indexOf(customer), 1);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

@@ -37,6 +37,10 @@ export class ClienteRepositoryService {
   //   return this.httpClient.put<ICustomer>(`${environment.api}/customers/${id}`, data);
   // }
 
+  // delete(id: number): Observable<any> {
+  //   return this.httpClient.delete(`${environment.api}/customers/${id}`);
+  // }
+
   // Exemplo 2
   getAll(page?: string): Promise<ICustomer[]> {
     const params = new HttpParams()
@@ -68,6 +72,11 @@ export class ClienteRepositoryService {
     const { id, ...data } = customer;
 
     return this.httpClient.put<ICustomer>(`${environment.api}/customers/${id}`, data)
+      .toPromise();
+  }
+
+  delete(id: number): Promise<any> {
+    return this.httpClient.delete(`${environment.api}/customers/${id}`)
       .toPromise();
   }
 }

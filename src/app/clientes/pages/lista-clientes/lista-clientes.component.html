@@ -21,7 +21,7 @@
         <td>{{ cliente.email }}</td>
         <td>
           <button class="btn-outline-primary" [routerLink]="['edit', cliente.id]">Editar</button>
-          <button class="btn-outline-secondary">Excluir</button>
+          <button class="btn-outline-secondary" (click)="deleteCliente(cliente)">Excluir</button>
         </td>
       </tr>
     </tbody>
