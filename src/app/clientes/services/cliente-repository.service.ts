@@ -31,6 +31,12 @@ export class ClienteRepositoryService {
   //   return this.httpClient.post<ICustomer>(`${environment.api}/customers`, data);
   // }
 
+  // update(customer: ICustomer): Observable<ICustomer> {
+  //   const { id, ...data } = customer;
+
+  //   return this.httpClient.put<ICustomer>(`${environment.api}/customers/${id}`, data);
+  // }
+
   // Exemplo 2
   getAll(page?: string): Promise<ICustomer[]> {
     const params = new HttpParams()
@@ -55,6 +61,13 @@ export class ClienteRepositoryService {
 
     return this.httpClient
       .post<ICustomer>(`${environment.api}/customers`, data)
+      .toPromise();
+  }
+
+  update(customer: ICustomer): Promise<ICustomer> {
+    const { id, ...data } = customer;
+
+    return this.httpClient.put<ICustomer>(`${environment.api}/customers/${id}`, data)
       .toPromise();
   }
 }

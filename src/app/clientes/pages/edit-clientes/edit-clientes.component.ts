@@ -1,3 +1,4 @@
+import { ICustomer } from './../../entities/icustomer';
 import { ClienteRepositoryService } from './../../services/cliente-repository.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -41,7 +42,16 @@ export class EditClientesComponent implements OnInit {
   // onSubmit(): void {
   //   try {
   //     if (this.id) {
-  //       // aqui vai o update
+  //       const data = {
+  //         id: this.id,
+  //         ...this.customer.value
+  //       };
+
+  //       this.clienteRepositoryService
+  //         .update(data)
+  //         .subscribe(response => {
+  //           console.log(response);
+  //         });
   //     } else {
   //       this.clienteRepositoryService
   //         .insert(this.customer.value)
@@ -80,7 +90,15 @@ export class EditClientesComponent implements OnInit {
   async onSubmit(): Promise<void> {
     try {
       if (this.id) {
-        // aqui vai o update
+        const data: ICustomer = {
+          id: this.id,
+          ...this.customer.value
+        };
+
+        const response = await this.clienteRepositoryService
+          .update(data);
+
+        console.log(response);
       } else {
         const response = await this.clienteRepositoryService
           .insert(this.customer.value);
