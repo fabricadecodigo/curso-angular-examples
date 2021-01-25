@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './shared/pages/page-not-found/page-not-found.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { httpInterceptorProviders } from './shared/interceptors/';
 
 @NgModule({
   declarations: [
@@ -17,9 +16,7 @@ import { httpInterceptorProviders } from './shared/interceptors/';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [
-    httpInterceptorProviders
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
