@@ -1,3 +1,5 @@
+import { ClienteRepositoryService } from './../../services/cliente-repository.service';
+import { ICustomer } from './../../entities/icustomer';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,13 +8,55 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-clientes.component.scss'],
 })
 export class ListaClientesComponent implements OnInit {
-  clientes = [
-    { id: 1, name: 'Cliente 1', email: 'cliente1@gmail.com' },
-    { id: 2, name: 'Cliente 2', email: 'cliente2@gmail.com' },
-    { id: 3, name: 'Cliente 3', email: 'cliente3@gmail.com' },
-  ];
+  clientes: ICustomer[] = [];
+  page = 1;
 
-  constructor() {}
+  constructor(
+    private clienteRepositoryService: ClienteRepositoryService
+  ) {}
 
-  ngOnInit(): void {}
+  // Exemplo 1
+  // ngOnInit(): void {
+  //   this.getAllCustomers();
+  // }
+
+  // getAllCustomers(page?: number) {
+  //   const pageToGet = page ? page.toString() : '';
+  //   this.clienteRepositoryService.getAll(pageToGet).subscribe(response => this.clientes = response);
+  // }
+
+  // paginaAnterior(): void {
+  //   this.page--;
+  //   this.getAllCustomers(this.page);
+  // }
+
+  // proximaPagina(): void {
+  //   this.page++;
+  //   this.getAllCustomers(this.page);
+  // }
+
+
+  // Exemplo 2
+  async ngOnInit(): Promise<void> {
+    await this.getAllCustomers();
+  }
+
+  async getAllCustomers(page?: number): Promise<void>  {
+    try {
+      const pageToGet = page ? page.toString() : '';
+      this.clientes = await this.clienteRepositoryService.getAll(pageToGet);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async paginaAnterior(): Promise<void> {
+    this.page--;
+    await this.getAllCustomers(this.page);
+  }
+
+  async proximaPagina(): Promise<void> {
+    this.page++;
+    await this.getAllCustomers(this.page);
+  }
 }
