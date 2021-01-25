@@ -38,6 +38,23 @@ export class EditClientesComponent implements OnInit {
   //   });
   // }
 
+  // onSubmit(): void {
+  //   try {
+  //     if (this.id) {
+  //       // aqui vai o update
+  //     } else {
+  //       this.clienteRepositoryService
+  //         .insert(this.customer.value)
+  //         .subscribe((response) => {
+  //           console.log(response);
+  //           this.id = response.id;
+  //         });
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
   // Exemplo 2
   async ngOnInit(): Promise<void> {
     const idParam = this.activatedRoute.snapshot.paramMap.get('id');
@@ -60,5 +77,19 @@ export class EditClientesComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {}
+  async onSubmit(): Promise<void> {
+    try {
+      if (this.id) {
+        // aqui vai o update
+      } else {
+        const response = await this.clienteRepositoryService
+          .insert(this.customer.value);
+
+        console.log(response);
+        this.id = response.id;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
